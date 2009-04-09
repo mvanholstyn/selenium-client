@@ -1,4 +1,5 @@
-require File.join(File.dirname(__FILE__), *%W[.. lib selenium rake tasks])
+require File.join(File.dirname(__FILE__), '../lib/selenium/rake/tasks')
+
 Selenium::Rake::RemoteControlStartTask.new do |rc|
   rc.background = true
   rc.wait_until_up_and_running = true
@@ -10,8 +11,7 @@ end
 Selenium::Rake::RemoteControlStopTask.new do |rc|
 end
 
-# TODO: How can I get around this?
-require File.join(Rails.root, *%W[vendor gems rspec-1.1.11 lib spec rake spectask])
+require 'spec/rake/spectask'
 
 desc 'Run acceptance tests for web application on default browser defined in config/selenium.yml'
 Spec::Rake::SpecTask.new('selenium') do |t|
